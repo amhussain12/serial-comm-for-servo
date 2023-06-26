@@ -6,7 +6,7 @@ import random
 import time
 
 # Serial Port
-SERIAL_PORT = 'COM6' #desired port
+SERIAL_PORT = 'COM6' #desired port(USB)
 BAUD_RATE = 9600 #baud rate not necessary
 
 #Slave id
@@ -27,7 +27,7 @@ while True:
         servo_axis = random.randint(0,90) # this send random servo axis 
 
             # Create message
-        message = create_message(SLAVE_ADDRESS,6,servo_axis)
+        message = create_message(SLAVE_ADDRESS,6,servo_axis) #6 here means fuction code which is specific to the slave it is going to communicate
 
             # Send message to the slave
         ser.write(message)
