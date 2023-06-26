@@ -6,8 +6,8 @@ import random
 import time
 
 # Serial Port
-SERIAL_PORT = 'COM6'
-BAUD_RATE = 9600
+SERIAL_PORT = 'COM6' #desired port
+BAUD_RATE = 9600 #baud rate not necessary
 
 #Slave id
 SLAVE_ADDRESS = 1
@@ -22,9 +22,9 @@ def create_message(address, function, value):
 
 while True:
     try:
-        #servo_axis = int(input("Enter servo axis position (0-90): "))
+        #servo_axis = int(input("Enter servo axis position (0-90): ")) #enter desired servo axis limit here
         
-        servo_axis = random.randint(0,90)
+        servo_axis = random.randint(0,90) # this send random servo axis 
 
             # Create message
         message = create_message(SLAVE_ADDRESS,6,servo_axis)
