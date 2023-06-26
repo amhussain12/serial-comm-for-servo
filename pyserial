@@ -1,0 +1,40 @@
+#serial COMM
+
+
+import serial
+import random
+import time
+
+# Serial Port
+SERIAL_PORT = 'COM6'
+BAUD_RATE = 9600
+
+#Slave id
+SLAVE_ADDRESS = 1
+
+# Establish Serial Connection
+ser = serial.Serial(SERIAL_PORT, BAUD_RATE)
+
+# Function to create a message
+def create_message(address, function, value):
+    message = bytes([address, function, (value >> 8) & 0xFF, value & 0xFF])
+    return message
+
+while True:
+    try:
+        #servo_axis = int(input("Enter servo axis position (0-90): "))
+        
+        servo_axis = random.randint(0,90)
+
+            # Create message
+        message = create_message(SLAVE_ADDRESS,6,servo_axis)
+
+            # Send message to the slave
+        ser.write(message)
+
+        print('axis sent ',servo_axis)
+
+        time.sleep(1)
+       
+    except Exception as e:
+        print('Failed to communicate', str(e))
